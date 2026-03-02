@@ -10,6 +10,31 @@ data:
     - name: Parasol Insurance webhook setup
       hosts: localhost
       tasks:
+        - name: Generate webhook secret
+          ansible.builtin.set_fact:
+            _webhook_secret: "{{ "{{" }} lookup('password', '/dev/null chars=ascii_lowercase,digits length=12') {{ "}}" }}"
+
+        - name: Retrieve Vault Pod
+          kubernetes.core.k8s_info:
+            kind: Pod
+            name: {{ $.Values.vault.name }}-0
+            namespace: {{ $.Values.vault.namespace }}
+          register: r_vault
+          retries: 120
+          delay: 5
+          until:
+            - r_vault.resources is defined
+            - r_vault.resources | length > 0
+            - r_vault.resources[0].status is defined
+            - r_vault.resources[0].status.phase is defined
+            - r_vault.resources[0].status.phase == 'Running'
+
+        - name: Store webhook secret in Vault
+          kubernetes.core.k8s_exec:
+            namespace: {{ $.Values.vault.namespace }}
+            pod: {{ $.Values.vault.name }}-0
+            command: 'vault kv put kv/secrets/parasol-insurance/webhook-secret value={{ "{{" }} _webhook_secret {{ "}}" }}'
+
         - name: Wait for EventListener route
           kubernetes.core.k8s_info:
             api_version: route.openshift.io/v1
@@ -59,7 +84,7 @@ data:
             body_format: json
             body:
               url: "{{ "{{" }} _el_url {{ "}}" }}"
-              token: "{{ "{{" }} lookup('env', 'GITLAB_TOKEN') {{ "}}" }}"
+              token: "{{ "{{" }} _webhook_secret {{ "}}" }}"
               tag_push_events: true
               push_events: true
               enable_ssl_verification: false
@@ -76,7 +101,7 @@ data:
             body_format: json
             body:
               url: "{{ "{{" }} _el_url {{ "}}" }}"
-              token: "{{ "{{" }} lookup('env', 'GITLAB_TOKEN') {{ "}}" }}"
+              token: "{{ "{{" }} _webhook_secret {{ "}}" }}"
               tag_push_events: true
               push_events: true
               enable_ssl_verification: false
