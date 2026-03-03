@@ -12,5 +12,5 @@ spec:
     matchLabels:
       app: ztunnel
   podMetricsEndpoints:
-    - port: "15020"
+    - port: ztunnel-stats
       path: /stats/prometheus
