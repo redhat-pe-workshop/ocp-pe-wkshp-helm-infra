@@ -18,6 +18,8 @@ spec:
     devfileRegistry: {}
     imagePuller:
       enable: true
+      spec:
+        images: "{{ range $i, $entry := .Values.imagePuller.images }}{{ if $i }};{{ end }}{{ $entry.name }}={{ $entry.image }}{{ end }}"
     metrics:
       enable: true
     pluginRegistry:
