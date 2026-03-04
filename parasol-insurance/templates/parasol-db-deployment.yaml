@@ -19,7 +19,6 @@ spec:
     metadata:
       labels:
         app: parasol-db
-        sidecar.istio.io/inject: "true"
     spec:
       securityContext:
         runAsNonRoot: true
