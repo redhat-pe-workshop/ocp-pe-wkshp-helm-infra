@@ -1,5 +1,5 @@
 gitops:
-  repoURL: https://github.com/evanshortiss/etx-app-platform-helm.git
+  repoURL: https://github.com/evanshortiss/ocp-app-platform-demo-helm.git
   targetRevision: main
 
 argocd:
