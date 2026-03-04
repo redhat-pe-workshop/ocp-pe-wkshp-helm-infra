@@ -33,7 +33,7 @@ server:
 
 build:
   git:
-    uri: https://github.com/evanshortiss/ocp-app-platform-demo-helm.git
+    uri: https://github.com/redhat-ads-tech/ocp-app-platform-demo-helm.git
     ref: main
     contextDir: openvsx/open-vsx-server
 
