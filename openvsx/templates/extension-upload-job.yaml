@@ -36,6 +36,7 @@ spec:
 
               # Install required tools
               echo "Installing dependencies..."
+              dnf module enable -y nodejs:20
               dnf install -y --nodocs nodejs npm postgresql
               curl -sL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq && chmod +x /usr/local/bin/yq
               npm install -g ovsx
