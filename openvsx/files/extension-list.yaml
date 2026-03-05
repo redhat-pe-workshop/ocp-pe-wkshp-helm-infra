@@ -1,10 +1,11 @@
 extensions:
-  - id: redhat.java
   - id: continue.continue
     version: 1.2.11
+  - id: redhat.java
   - id: redhat.vscode-yaml
   - id: vscjava.vscode-java-debug
   - id: vscjava.vscode-java-test
+  - id: redhat.vscode-microprofile
   - id: vscjava.vscode-maven
   - id: vscode.html-language-features
   - id: redhat.vscode-quarkus
