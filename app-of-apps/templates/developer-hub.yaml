@@ -45,4 +45,5 @@ spec:
           loginRealm: {{ .Values.developerHub.config.keycloak.loginRealm }}
         cluster:
           subdomain: {{ .Values.cluster.subdomain }}
+        devMode: {{ eq .Values.gitops.targetRevision "dev" }}
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
