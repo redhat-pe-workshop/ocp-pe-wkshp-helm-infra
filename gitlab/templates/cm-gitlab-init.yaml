@@ -99,7 +99,7 @@ data:
               skip_confirmation: true
               username: {{ $item.id }}
               password: {{ include "gitlab-user.password" $ }}
-              name: {{ $item.id }} GitLab
+              name: {{ $item.name | default (printf "%s GitLab" $item.id) }}
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
             validate_certs: false

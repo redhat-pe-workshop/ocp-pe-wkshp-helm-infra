@@ -25,9 +25,13 @@ gitlab:
   users:
     users:
       - id: dev1
+        name: Dave Developer
       - id: dev2
+        name: Divya Developer
       - id: pe1
+        name: Paul PlatEngineer
       - id: pe2
+        name: Priya PlatEngineer
     password: 
   groups:
     - name: rhdh
