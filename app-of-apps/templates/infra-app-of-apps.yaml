@@ -8,6 +8,6 @@ spec:
   project: default
   source:
     path: argocd
-    repoURL: https://{{ .Values.gitlab.host }}/platform/infra-app-of-apps.git
+    repoURL: https://{{ .Values.gitlab.host }}/rhdh/infra-app-of-apps.git
     targetRevision: main
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
