@@ -88,6 +88,8 @@ data:
               value: "{{ $.Values.quay.host }}"
             - key: orchestrator_namespace
               value: "{{ $.Values.orchestrator.namespace }}"
+            - key: chart_repo_url
+              value: "{{ $.Values.gitlab.chartRepoUrl }}"
 {{- end }}
 
         - name: Add new files to the repository
