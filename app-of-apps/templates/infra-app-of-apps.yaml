@@ -10,4 +10,9 @@ spec:
     path: argocd
     repoURL: https://{{ .Values.gitlab.host }}/rhdh/infra-app-of-apps.git
     targetRevision: main
+    helm:
+      valuesObject:
+        gitlabHost: {{ .Values.gitlab.host }}
+        gitopsNamespace: {{ .Values.argocd.namespace }}
+        kafkaNamespace: {{ .Values.amqStreams.namespace }}
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
