@@ -17,7 +17,6 @@ gitlab:
   rootPassword:
   host:
   https: "true"
-  chartRepoUrl: https://redhat-ads-tech.github.io/ocp-app-platform-demo-apps-helm
   rootEmail: "root@rhdemo.com"
   keyBase:
     db: "0123456789"

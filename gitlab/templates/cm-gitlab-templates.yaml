@@ -89,7 +89,7 @@ data:
             - key: orchestrator_namespace
               value: "{{ $.Values.orchestrator.namespace }}"
             - key: chart_repo_url
-              value: "{{ $.Values.gitlab.chartRepoUrl }}"
+              value: "https://{{ $.Values.gitlab.host }}/api/v4/projects/rhdh%2Fhelm-charts/packages/helm/stable"
 {{- end }}
 
         - name: Add new files to the repository

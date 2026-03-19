@@ -313,6 +313,36 @@ data:
 {{- end }}
 {{- end }}
 
+        - name: Wait for helm-charts repo import to finish
+          ansible.builtin.uri:
+            url: https://{{ $.Values.gitlab.host }}/api/v4/projects/rhdh%2Fhelm-charts/import
+            method: GET
+            headers:
+              PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
+            validate_certs: false
+            status_code: 200
+          register: r_helm_import
+          retries: 60
+          delay: 10
+          until: r_helm_import.json.import_status == 'finished'
+
+        - name: Trigger CI pipeline to publish charts to Package Registry
+          ansible.builtin.uri:
+            url: https://{{ $.Values.gitlab.host }}/api/v4/projects/rhdh%2Fhelm-charts/pipeline
+            method: POST
+            body_format: form-urlencoded
+            body:
+              ref: main
+            headers:
+              PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
+            validate_certs: false
+            status_code:
+              - 201
+          register: r_helm_pipeline
+          retries: 10
+          delay: 5
+          until: r_helm_pipeline.status == 201
+
         - name: Retrieve Vault Pod
           kubernetes.core.k8s_info:
             kind: Pod
