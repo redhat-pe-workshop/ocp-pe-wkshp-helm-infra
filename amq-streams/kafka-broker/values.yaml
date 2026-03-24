@@ -27,7 +27,7 @@ kafka:
     userOperator:
       resources:
         limits:
-          cpu: 500m
+          cpu: "1"
           memory: 512M
         requests:
           cpu: 250m
