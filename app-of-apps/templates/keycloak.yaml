@@ -27,6 +27,8 @@ spec:
         keycloak-realm-import:
           keycloak:
             name: {{ .Values.keycloak.crName }}
+          cluster:
+            subdomain: {{ .Values.cluster.subdomain }}
           realm:
             name: {{ .Values.keycloak.realm.name }}
           client:

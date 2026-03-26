@@ -16,6 +16,8 @@ spec:
         keycloak:
           host: {{ .Values.keycloak.route.host }}
           realm: {{ .Values.keycloak.realm.name }}
+        cluster:
+          subdomain: {{ .Values.cluster.subdomain }}
         oidc:
           clientId: {{ .Values.keycloak.client.openshift.name }}
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
