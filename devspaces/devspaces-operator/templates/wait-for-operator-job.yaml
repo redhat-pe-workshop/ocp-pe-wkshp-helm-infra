@@ -74,14 +74,15 @@ spec:
             - -c
             - |
               NS="{{ include "devspaces-operator.namespace" . }}"
-              CSV="{{ .Values.devspaces.subscription.startingCSV }}"
 
-              echo "Waiting for CSV ${CSV} to succeed in ${NS}..."
-              until [ "$(oc get csv ${CSV} -n ${NS} -o jsonpath='{.status.phase}' 2>/dev/null)" = "Succeeded" ]; do
+              echo "Waiting for DevSpaces CSV to succeed in ${NS}..."
+              until CSV=$(oc get csv -n ${NS} --no-headers -o custom-columns=":metadata.name" 2>/dev/null | grep devspacesoperator | head -1) && \
+                    [ -n "${CSV}" ] && \
+                    [ "$(oc get csv ${CSV} -n ${NS} -o jsonpath='{.status.phase}' 2>/dev/null)" = "Succeeded" ]; do
                 echo "  ...CSV not ready yet"
                 sleep 10
               done
-              echo "CSV succeeded."
+              echo "CSV ${CSV} succeeded."
 
               echo "Waiting for devspaces-operator-service endpoint..."
               until oc get endpoints devspaces-operator-service -n ${NS} \
