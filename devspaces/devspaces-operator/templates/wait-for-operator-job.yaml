@@ -27,7 +27,7 @@ metadata:
 rules:
   - apiGroups: ["operators.coreos.com"]
     resources: ["clusterserviceversions"]
-    verbs: ["get"]
+    verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["endpoints"]
     verbs: ["get"]
