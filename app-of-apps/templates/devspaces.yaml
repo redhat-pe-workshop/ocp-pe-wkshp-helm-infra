@@ -17,6 +17,9 @@ spec:
           devspaces:
             subscription:
               source: {{ include "app-of-apps.operatorSource" . }}
+              {{- if .Values.catalogSource.enabled }}
+              startingCSV: ""
+              {{- end }}
         devspaces-instance:
           gitlab:
             host: {{ .Values.gitlab.host }}
