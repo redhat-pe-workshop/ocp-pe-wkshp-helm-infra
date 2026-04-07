@@ -10,8 +10,4 @@ spec:
     path: web-terminal
     repoURL: {{ .Values.gitops.repoURL }}
     targetRevision: {{ .Values.gitops.targetRevision }}
-  syncPolicy:
-    automated: {}
-    syncOptions:
-      - CreateNamespace=false
-      - RespectIgnoreDifferences=true
+  {{ include "app-of-apps.syncPolicy" . | nindent 2 }}
