@@ -12,10 +12,14 @@ catalogSource:
   enabled: false
   name: redhat-operators-snapshot
   namespace: openshift-marketplace
-  image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
-  tag: v4.20_2026_02_11
+  image: quay.io/rhpds/olm_snapshot_redhat_catalog
+  tag: v4.21_2026_05_25
   displayName: "Red Hat Operators (Snapshot)"
   publisher: "Red Hat Demo Platform"
+  grpcPodConfig:
+    extractContent:
+      catalogDir: /configs
+      cacheDir: /tmp/cache
 
 cluster:
   subdomain: ""
@@ -251,6 +255,10 @@ openvsx:
 sonarqube:
   name: sonarqube
   namespace: sonarqube
+
+jiraStub:
+  name: jira-stub
+  namespace: rhdh
 
 orchestrator:
   name: orchestrator
