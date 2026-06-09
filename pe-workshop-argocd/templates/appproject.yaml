@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.projectName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  description: Scoped project for PE workshop attendees
+  destinations:
+    - namespace: {{ .Values.destination.namespace }}
+      server: {{ .Values.destination.server }}
+  sourceRepos:
+    - {{ .Values.sourceRepo }}
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - group: rhdh.redhat.com
+      kind: Backstage
+    - group: ""
+      kind: ConfigMap
+    - group: ""
+      kind: Secret
+    - group: ""
+      kind: PersistentVolumeClaim
+    - group: external-secrets.io
+      kind: ExternalSecret

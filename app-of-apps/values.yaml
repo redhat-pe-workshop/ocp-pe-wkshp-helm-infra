@@ -260,6 +260,9 @@ jiraStub:
   name: jira-stub
   namespace: rhdh
 
+peWorkshopArgocd:
+  name: pe-workshop-argocd
+
 orchestrator:
   name: orchestrator
   namespace: backstage

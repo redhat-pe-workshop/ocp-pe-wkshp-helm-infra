@@ -22,6 +22,8 @@ spec:
     defaultPolicy: role:readonly
     policy: |
       g, cluster-admins, role:admin
+      p, pe1, applications, *, pe-workshop/*, allow
+      p, pe1, projects, get, pe-workshop, allow
   repo:
     resources:
       {{- toYaml .Values.repo.resources | nindent 6 }}

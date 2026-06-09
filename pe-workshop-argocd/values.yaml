@@ -1,0 +1,8 @@
+projectName: pe-workshop
+namespace: openshift-gitops
+
+sourceRepo: ""
+
+destination:
+  namespace: rhdh
+  server: https://kubernetes.default.svc
