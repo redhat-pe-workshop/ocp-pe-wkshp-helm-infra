@@ -15,7 +15,9 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: cosign-keygen
-          image: registry.redhat.io/openshift4/ose-cli:v4.20
+          # ose-cli-rhel9 v4.20 — RHEL 9 required for glibc 2.34+ (cosign binary compatibility)
+          # https://catalog.redhat.com/en/software/containers/openshift4/ose-cli-rhel9/6528096620ebdcf82af4cbf9#overview
+          image: registry.redhat.io/openshift4/ose-cli-rhel9@sha256:0bfeb47948c5b9a43f9d1cf7a8318c466ff69f48acd53b062479a9448bddde97
           env:
             - name: VAULT_NAMESPACE
               value: {{ .Values.vault.namespace | quote }}
