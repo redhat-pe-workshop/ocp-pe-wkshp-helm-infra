@@ -90,6 +90,8 @@ data:
               value: "{{ $.Values.orchestrator.namespace }}"
             - key: chart_repo_url
               value: "https://redhat-ads-tech.github.io/ocp-app-platform-demo-apps-helm"
+            - key: kubernetes_api_url
+              value: "{{ $.Values.cluster.apiServer }}"
 {{- end }}
 
         - name: Add new files to the repository

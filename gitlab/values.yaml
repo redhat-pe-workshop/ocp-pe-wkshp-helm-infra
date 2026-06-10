@@ -38,10 +38,6 @@ gitlab:
       repo:
         - name: developer-hub-config
           url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-developer-hub-config.git
-        - name: rhdh-entities
-          url: https://github.com/redhat-pe-workshop/pe-workshop-entities.git
-        - name: template-developer-self-service
-          url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
         - name: devfiles
           url: https://github.com/redhat-ads-tech/devfiles.git
         - name: rhdh-templates
@@ -50,6 +46,8 @@ gitlab:
           url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-apps-helm.git
         - name: infra-app-of-apps
           url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-infra-app-of-apps.git
+        - name: ocp-pe-wkshp-rhdh-configs
+          url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-rhdh-configs.git
       users:
         - id: pe1
         - id: pe2
@@ -92,13 +90,23 @@ gitlab:
         - templates/request-kafka-topic/template.yaml
         - templates/request-kafka-user/template.yaml
         - templates/quarkus-rest-api/template.yaml
+    - group: rhdh
+      project: ocp-pe-wkshp-rhdh-configs
+      branch: main
+      templates:
+        - base/configmap-app-config.yaml
+        - overlays/02-sso-plugins/patches/app-config.yaml
+        - overlays/03-catalog-entities/patches/app-config.yaml
+        - overlays/04-templates/patches/app-config.yaml
+        - overlays/05-lightspeed/patches/app-config.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
   dbName: gitlab_production
 
 cluster:
-  subdomain: 
+  subdomain:
+  apiServer:
 
 gitops:
   namespace:

@@ -24,6 +24,8 @@ spec:
           value: {{ .Values.gitlab.host }}
         - name: cluster.subdomain
           value: {{ .Values.gitlab.cluster.subdomain }}
+        - name: cluster.apiServer
+          value: {{ .Values.cluster.apiServer }}
         - name: gitops.namespace
           value: {{ .Values.gitlab.gitops.namespace }}
         - name: quay.host
