@@ -12,13 +12,5 @@ spec:
     - {{ .Values.sourceRepo }}
   clusterResourceWhitelist: []
   namespaceResourceWhitelist:
-    - group: rhdh.redhat.com
-      kind: Backstage
-    - group: ""
-      kind: ConfigMap
-    - group: ""
-      kind: Secret
-    - group: ""
-      kind: PersistentVolumeClaim
-    - group: external-secrets.io
-      kind: ExternalSecret
+    - group: "*"
+      kind: "*"
