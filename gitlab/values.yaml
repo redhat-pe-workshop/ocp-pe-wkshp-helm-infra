@@ -66,11 +66,11 @@ gitlab:
     - name: parasol
       repo:
         - name: parasol-insurance
-          url: https://github.com/redhat-ads-tech/parasol-insurance.git
+          url: https://github.com/redhat-pe-workshop/parasol-insurance.git
         - name: parasol-insurance-manifests
-          url: https://github.com/redhat-ads-tech/parasol-insurance-manifests.git
+          url: https://github.com/redhat-pe-workshop/parasol-insurance-manifests.git
         - name: parasol-insurance-secured-manifests
-          url: https://github.com/redhat-ads-tech/parasol-insurance-secured-manifests.git
+          url: https://github.com/redhat-pe-workshop/parasol-insurance-secured-manifests.git
       users:
         - id: dev1
         - id: dev2
@@ -95,10 +95,10 @@ gitlab:
       branch: main
       templates:
         - base/configmap-app-config.yaml
-        - overlays/02-sso-plugins/patches/app-config.yaml
-        - overlays/03-catalog-entities/patches/app-config.yaml
-        - overlays/04-templates/patches/app-config.yaml
-        - overlays/05-lightspeed/patches/app-config.yaml
+        - overlays/02-sso-plugins/configmap-app-config-auth.yaml
+        - overlays/03-catalog-entities/configmap-app-config-catalog.yaml
+        - overlays/04-templates/configmap-app-config-catalog.yaml
+        - overlays/05-lightspeed/configmap-app-config-lightspeed.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
