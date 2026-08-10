@@ -48,6 +48,8 @@ gitlab:
           url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-infra-app-of-apps.git
         - name: ocp-pe-wkshp-rhdh-configs
           url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-rhdh-configs.git
+        - name: prerequisite-samples
+          url: https://github.com/redhat-pe-workshop/prerequisite-samples.git
       users:
         - id: pe1
         - id: pe2
