@@ -14,7 +14,9 @@ spec:
   {{- range .Values.sourceRepos }}
     - {{ . }}
   {{- end }}
-  clusterResourceWhitelist: []
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"
