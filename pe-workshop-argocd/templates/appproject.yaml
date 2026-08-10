@@ -6,10 +6,14 @@ metadata:
 spec:
   description: Scoped project for PE workshop attendees
   destinations:
-    - namespace: {{ .Values.destination.namespace }}
-      server: {{ .Values.destination.server }}
+  {{- range .Values.destinations }}
+    - namespace: {{ .namespace }}
+      server: {{ .server }}
+  {{- end }}
   sourceRepos:
-    - {{ .Values.sourceRepo }}
+  {{- range .Values.sourceRepos }}
+    - {{ . }}
+  {{- end }}
   clusterResourceWhitelist: []
   namespaceResourceWhitelist:
     - group: "*"
