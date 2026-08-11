@@ -1,5 +1,8 @@
 nameOverride: vault
 
+cluster:
+  subdomain: ""
+
 kubernetes:
   apiserver:
 

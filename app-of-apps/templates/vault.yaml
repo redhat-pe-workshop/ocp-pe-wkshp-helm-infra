@@ -18,6 +18,8 @@ spec:
     helm:
       valuesObject:
         nameOverride: {{ .Values.vault.name }}
+        cluster:
+          subdomain: {{ .Values.cluster.subdomain }}
         kubernetes:
           apiserver: {{ .Values.cluster.apiServer }}
         vault:
