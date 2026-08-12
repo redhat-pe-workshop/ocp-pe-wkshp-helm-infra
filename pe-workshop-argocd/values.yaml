@@ -8,3 +8,5 @@ destinations:
     server: https://kubernetes.default.svc
   - namespace: prerequisite-samples
     server: https://kubernetes.default.svc
+  - namespace: dev-team-alpha
+    server: https://kubernetes.default.svc
