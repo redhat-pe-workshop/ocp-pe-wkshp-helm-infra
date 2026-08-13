@@ -73,6 +73,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/parasol-insurance-manifests.git
         - name: parasol-insurance-secured-manifests
           url: https://github.com/redhat-pe-workshop/parasol-insurance-secured-manifests.git
+        - name: parasol-entities
+          url: https://github.com/redhat-pe-workshop/parasol-entities.git
       users:
         - id: dev1
         - id: dev2
