@@ -83,8 +83,8 @@ spec:
           value: /home/vault
         - name: VAULT_CLI_NO_COLOR
           value: "1"
-        image: registry.connect.redhat.com/hashicorp/vault:1.12.3-ubi
-        imagePullPolicy: IfNotPresent
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         lifecycle:
           preStop:
             exec:
