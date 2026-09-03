@@ -87,13 +87,15 @@ gitlab:
       templates:
         - devfile.yaml
     - group: rhdh
-      project: rhdh-templates
+      project: rhdh-template-developer-self-service
       branch: main
+      source: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
       templates:
-        - templates/parasol-insurance-secured/template.yaml
-        - templates/request-kafka-topic/template.yaml
-        - templates/request-kafka-user/template.yaml
-        - templates/quarkus-rest-api/template.yaml
+        - quarkus-chatbot-rag/template.yaml
+    - group: rhdh
+      project: infra-app-of-apps
+      branch: main
+      source: https://github.com/redhat-pe-workshop/infra-app-of-apps.git
     - group: rhdh
       project: ocp-pe-wkshp-rhdh-configs
       branch: main

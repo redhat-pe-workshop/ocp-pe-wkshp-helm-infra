@@ -5,14 +5,16 @@ spec:
   destination:
     namespace: {{ .Values.argocd.namespace }}
     server: https://kubernetes.default.svc
-  project: default
+  project: {{ .Values.peWorkshopArgocd.projectName | default "pe-workshop" }}
   source:
     path: argocd
     repoURL: https://{{ .Values.gitlab.host }}/rhdh/infra-app-of-apps.git
     targetRevision: main
     helm:
       valuesObject:
-        gitlabHost: {{ .Values.gitlab.host }}
-        gitopsNamespace: {{ .Values.argocd.namespace }}
-        kafkaNamespace: {{ .Values.amqStreams.namespace }}
+        gitlab:
+          host: {{ .Values.gitlab.host }}
+        argocd:
+          namespace: {{ .Values.argocd.namespace }}
+        project: {{ .Values.peWorkshopArgocd.projectName | default "pe-workshop" }}
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
