@@ -5,7 +5,7 @@ spec:
   destination:
     namespace: {{ .Values.argocd.namespace }}
     server: https://kubernetes.default.svc
-  project: {{ .Values.peWorkshopArgocd.projectName | default "pe-workshop" }}
+  project: default
   source:
     path: argocd
     repoURL: https://{{ .Values.gitlab.host }}/rhdh/infra-app-of-apps.git
