@@ -45,7 +45,9 @@ gitlab:
         - name: helm-charts
           url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-apps-helm.git
         - name: infra-app-of-apps
-          url: https://github.com/redhat-ads-tech/ocp-app-platform-demo-infra-app-of-apps.git
+          url: https://github.com/redhat-pe-workshop/infra-app-of-apps.git
+        - name: rhdh-template-developer-self-service
+          url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
         - name: ocp-pe-wkshp-rhdh-configs
           url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-rhdh-configs.git
         - name: prerequisite-samples
