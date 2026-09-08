@@ -17,6 +17,13 @@ spec:
             set -x
             ansible-playbook -i localhost /scripts/playbook.yaml
         image: quay.io/agnosticd/ee-multicloud:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
         volumeMounts:
           - mountPath: /scripts
             name: init-gitlab-vol

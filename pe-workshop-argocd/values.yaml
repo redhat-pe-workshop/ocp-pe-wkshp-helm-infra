@@ -1,10 +1,13 @@
 projectName: pe-workshop
 namespace: openshift-gitops
 
-sourceRepos: []
+sourceRepos:
+  - 'https://gitlab-gitlab.*.dyn.redhatworkshops.io/rhdh/*'
 
 destinations:
   - namespace: rhdh
+    server: https://kubernetes.default.svc
+  - namespace: openshift-gitops
     server: https://kubernetes.default.svc
   - namespace: prerequisite-samples
     server: https://kubernetes.default.svc
