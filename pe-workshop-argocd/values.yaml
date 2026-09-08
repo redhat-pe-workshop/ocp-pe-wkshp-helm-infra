@@ -14,5 +14,3 @@ destinations:
     server: https://kubernetes.default.svc
   - namespace: dev-team-alpha
     server: https://kubernetes.default.svc
-  - namespace: '*'
-    server: https://kubernetes.default.svc
