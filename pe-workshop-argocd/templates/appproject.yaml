@@ -7,7 +7,7 @@ spec:
   description: Scoped project for PE workshop attendees
   destinations:
   {{- range .Values.destinations }}
-    - namespace: {{ .namespace }}
+    - namespace: {{ .namespace | quote }}
       server: {{ .server }}
   {{- end }}
   sourceRepos:
