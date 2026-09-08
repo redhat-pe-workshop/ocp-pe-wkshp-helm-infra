@@ -7,6 +7,8 @@ metadata:
     name: gitlab-redis
   name: gitlab-redis
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       name: gitlab-redis
