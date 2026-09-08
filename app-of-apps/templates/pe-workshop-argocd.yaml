@@ -12,6 +12,7 @@ spec:
     targetRevision: {{ .Values.gitops.targetRevision }}
     helm:
       valuesObject:
+        clusterSubdomain: {{ .Values.cluster.subdomain }}
         sourceRepos:
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/ocp-pe-wkshp-rhdh-configs.git
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/prerequisite-samples.git
