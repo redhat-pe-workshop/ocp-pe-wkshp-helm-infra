@@ -16,5 +16,5 @@ spec:
           host: {{ .Values.gitlab.host }}
         argocd:
           namespace: {{ .Values.argocd.namespace }}
-        project: developer-apps
+        project: {{ .Values.peWorkshopArgocd.projectName | default "pe-workshop" }}
 {{ include "app-of-apps.syncPolicy" . | indent 2 }}
