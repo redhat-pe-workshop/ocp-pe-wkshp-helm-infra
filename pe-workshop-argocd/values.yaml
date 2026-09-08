@@ -3,6 +3,7 @@ namespace: openshift-gitops
 
 sourceRepos:
   - 'https://gitlab-gitlab.*.dyn.redhatworkshops.io/rhdh/*'
+  - 'https://gitlab-gitlab.*.dyn.redhatworkshops.io/parasol/*'
 
 destinations:
   - namespace: rhdh
