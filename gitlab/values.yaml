@@ -97,9 +97,8 @@ gitlab:
         - base/configmap-app-config.yaml
         - overlays/02-sso-plugins/configmap-app-config-auth.yaml
         - overlays/02-sso-plugins/patches/dynamic-plugins.yaml
-        - overlays/03-catalog-entities/configmap-app-config-catalog.yaml
-        - overlays/04-templates/configmap-app-config-catalog.yaml
-        - overlays/05-lightspeed/configmap-app-config-lightspeed.yaml
+        - overlays/03-catalog-lightspeed-templates/configmap-app-config-catalog.yaml
+        - overlays/03-catalog-lightspeed-templates/configmap-app-config-lightspeed.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
