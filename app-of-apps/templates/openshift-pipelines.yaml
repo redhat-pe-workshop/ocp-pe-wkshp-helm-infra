@@ -12,8 +12,6 @@ spec:
     targetRevision: {{ .Values.gitops.targetRevision }}
     helm:
       valuesObject:
-        subscription:
-          source: {{ include "app-of-apps.operatorSource" . }}
         rhtas:
           namespace: {{ .Values.rhtas.namespace }}
   syncPolicy:
@@ -25,5 +23,5 @@ spec:
         maxDuration: 3m0s
       limit: 2
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
       - RespectIgnoreDifferences=true
