@@ -73,7 +73,7 @@ spec:
               # Store keys in Vault with retries
               echo "Storing cosign keys in Vault..."
               RETRY_COUNT=0
-              MAX_RETRIES=5
+              MAX_RETRIES=20
 
               while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
                 if oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv put kv/secrets/rhtas/cosign-private-key value="$PRIVATE_KEY" && \
