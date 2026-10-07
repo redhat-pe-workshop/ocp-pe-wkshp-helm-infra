@@ -15,6 +15,7 @@ spec:
         clusterSubdomain: {{ .Values.cluster.subdomain }}
         sourceRepos:
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/ocp-pe-wkshp-rhdh-configs.git
+          - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/ocp-pe-wkshp-dev-spaces-config.git
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/prerequisite-samples.git
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/rhdh/infra-app-of-apps.git
           - https://gitlab-gitlab.{{ .Values.cluster.subdomain }}/parasol/*

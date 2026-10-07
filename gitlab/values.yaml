@@ -42,6 +42,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
         - name: ocp-pe-wkshp-rhdh-configs
           url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-rhdh-configs.git
+        - name: ocp-pe-wkshp-dev-spaces-config
+          url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-dev-spaces-config.git
         - name: prerequisite-samples
           url: https://github.com/redhat-pe-workshop/prerequisite-samples.git
       users:
@@ -99,6 +101,11 @@ gitlab:
         - overlays/02-sso-plugins/patches/dynamic-plugins.yaml
         - overlays/03-catalog-lightspeed-templates/configmap-app-config-catalog.yaml
         - overlays/03-catalog-lightspeed-templates/configmap-app-config-lightspeed.yaml
+    - group: rhdh
+      project: ocp-pe-wkshp-dev-spaces-config
+      branch: main
+      templates:
+        - base/checluster.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd

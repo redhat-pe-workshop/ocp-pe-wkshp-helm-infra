@@ -20,3 +20,5 @@ destinations:
     server: https://kubernetes.default.svc
   - namespace: "*-prod"
     server: https://kubernetes.default.svc
+  - namespace: openshift-devspaces
+    server: https://kubernetes.default.svc
