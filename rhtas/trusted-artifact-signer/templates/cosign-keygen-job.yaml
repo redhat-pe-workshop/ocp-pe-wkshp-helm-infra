@@ -9,6 +9,7 @@ metadata:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
+  backoffLimit: 3
   template:
     spec:
       serviceAccountName: cosign-keygen
@@ -24,6 +25,8 @@ spec:
           command: ["/bin/bash", "-c"]
           args:
             - |
+              set -euo pipefail
+
               # Wait for Vault KV engine to be ready (vault-setup job must have
               # finished enabling KV v2 and logging in with the root token)
               echo "Waiting for Vault..."
@@ -35,7 +38,7 @@ spec:
 
               # Check if keys already exist in Vault
               echo "Checking if cosign keys already exist in Vault..."
-              EXISTING=$(oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv get -field=value kv/secrets/rhtas/cosign-public-key 2>/dev/null)
+              EXISTING=$(oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv get -field=value kv/secrets/rhtas/cosign-public-key 2>/dev/null || true)
               if [ -n "$EXISTING" ]; then
                 echo "Cosign keys already exist in Vault, skipping"
                 exit 0
@@ -67,9 +70,36 @@ spec:
                 exit 1
               fi
 
-              # Store keys in Vault
+              # Store keys in Vault with retries
               echo "Storing cosign keys in Vault..."
-              oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv put kv/secrets/rhtas/cosign-private-key value="$PRIVATE_KEY"
-              oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv put kv/secrets/rhtas/cosign-public-key value="$PUBLIC_KEY"
+              RETRY_COUNT=0
+              MAX_RETRIES=5
+
+              while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+                if oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv put kv/secrets/rhtas/cosign-private-key value="$PRIVATE_KEY" && \
+                   oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv put kv/secrets/rhtas/cosign-public-key value="$PUBLIC_KEY"; then
+                  echo "Cosign keys stored in Vault successfully"
+                  break
+                else
+                  RETRY_COUNT=$((RETRY_COUNT + 1))
+                  if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                    echo "Failed to store keys in Vault (attempt $RETRY_COUNT/$MAX_RETRIES), retrying in 10s..."
+                    sleep 10
+                  else
+                    echo "ERROR: Failed to store keys in Vault after $MAX_RETRIES attempts"
+                    exit 1
+                  fi
+                fi
+              done
+
+              # Verify keys were actually stored
+              echo "Verifying keys were stored..."
+              VERIFY_PRIVATE=$(oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv get -field=value kv/secrets/rhtas/cosign-private-key 2>/dev/null)
+              VERIFY_PUBLIC=$(oc exec vault-0 -n "$VAULT_NAMESPACE" -- vault kv get -field=value kv/secrets/rhtas/cosign-public-key 2>/dev/null)
+
+              if [ -z "$VERIFY_PRIVATE" ] || [ -z "$VERIFY_PUBLIC" ]; then
+                echo "ERROR: Keys were not found in Vault after storage attempt"
+                exit 1
+              fi
 
               echo "Cosign keys generated and stored in Vault successfully"
