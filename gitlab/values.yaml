@@ -46,6 +46,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/ocp-pe-wkshp-dev-spaces-config.git
         - name: prerequisite-samples
           url: https://github.com/redhat-pe-workshop/prerequisite-samples.git
+        - name: workspace-images
+          url: https://github.com/redhat-pe-workshop/workspace-images.git
       users:
         - id: pe1
         - id: pe2
@@ -82,6 +84,7 @@ gitlab:
       branch: main
       templates:
         - devfile.yaml
+        - README.md
     - group: rhdh
       project: rhdh-template-developer-self-service
       branch: main

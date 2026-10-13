@@ -27,6 +27,10 @@ spec:
     repoURL: {{ .Values.gitops.repoURL }}
     targetRevision: {{ .Values.gitops.targetRevision }}
     helm:
+      valuesObject:
+        git:
+          uri: https://{{ .Values.gitlab.name }}-{{ .Values.gitlab.namespace }}.{{ .Values.cluster.subdomain }}/rhdh/workspace-images.git
+          ref: main
       parameters:
         - name: build.git.uri
           value: {{ .Values.gitops.repoURL }}

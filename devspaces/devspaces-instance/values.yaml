@@ -23,8 +23,6 @@ devEnvironments:
       memory: 512Mi
       cpu: 500m
 
-openVSXURL: "https://open-vsx.org"
-
 gitlab:
   host: ""
 

@@ -4,8 +4,8 @@ namespace: "workspace-images"
 
 # Git repository configuration
 git:
-  uri: "https://github.com/redhat-pe-workshop/workspace-images.git"
-  ref: "main"
+  uri: ""
+  ref: ""
   contextDir: "cekit-builder-image"
 
 # Image registry configuration
